@@ -1,4 +1,4 @@
-from app import init_app
+from app import init_app  # pylint: disable=missing-module-docstring
 
 
 app = init_app()

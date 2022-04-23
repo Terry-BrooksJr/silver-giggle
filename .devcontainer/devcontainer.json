@@ -7,6 +7,7 @@
 	"service": "app",
 	"workspaceFolder": "/workspace",
 
+
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
 		"python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -29,6 +30,9 @@
 		"ms-python.python",
 		"ms-python.vscode-pylance"
 	],
+	"forwardPorts": [
+		5432,6000,6969
+	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or the host.
