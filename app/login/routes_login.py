@@ -38,7 +38,11 @@ def load_user(user_id):
 @login_bp.route('/home')
 def login():
     form = LoginForm()
-    return render_template('login.html.jinja', form=form, next=request.args.get('next'),title='Safari Life Child Management System - Login', template='login')
+    return render_template('login.html.jinja', 
+                            form=form, 
+                            next=request.args.get('next'), 
+                            title='<title> Safari Life Child Management System - Login </title>', 
+                            template='login')
     # else:
     #     username = form.password.data
     #     password = form.username.data
@@ -88,8 +92,8 @@ def verify_user():
 
 @login_bp.route('/dashboard', methods=['POST', 'GET'])
 def dashboard():
-    return render_template('dashboard_layout.html.jinja',
-                           title='<title> Safari Life Child Management System - User Homepage </title>',
+    return render_template('dashboard_landing.jinja',
+                        #    title='<title> Safari Life Child Management System - User Homepage </title>',
                            template='base',
                            location="homepage")
 

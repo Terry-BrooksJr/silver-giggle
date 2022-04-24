@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-{{ title }}  
+  {{ title }}  
 <link rel="icon" type="image/svg+xml" href="{{ url_for( 'static', filename='./images/favicon.svg') }}">
   <link rel="icon" type="image/png" href="{{ url_for( 'static', filename='./images/favicon.png' ) }}">
     <link href="https://assets.codepen.io/6554302/normalize.css" rel="stylesheet">
@@ -26,7 +26,9 @@
     {% elif template == '404' %}
     <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='/app/static/css/404_.css') }}"> 
     {% elif template == 403 %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='/app/static/css/403_.css') }}"> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='/app/static/css/403_.css') }}">
+    {% elif template=="dashboard"%}
+    
     {% endif %}
 
 </head>
