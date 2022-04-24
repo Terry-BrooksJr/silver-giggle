@@ -5,9 +5,9 @@ from flask import make_response, Blueprint
 from flask import current_app as app
 from flask import (flash, g, redirect, render_template, request, session,
                    url_for)
-from flask_login import UserMixin, current_user, login_user, logout_user
+from flask_login import UserMixin, current_user, login_required, login_user, logout_user, current_user  
 from flask_wtf.csrf import CSRFError
-
+from pendulum import now
 from .forms_login import LoginForm
 
 login_bp = Blueprint(
@@ -15,6 +15,10 @@ login_bp = Blueprint(
     template_folder='templates',
     static_folder='static'
 )
+
+scunigan = PlatformUser("scunigan", 1, "Shenika", "Cunigan", "admin",
+                        "Testing", "GLEN01", now(tz='America/Chicago'), None, None)
+scunigan.password = scunigan.set_password(scunigan.password)
 
 
 @login_manager.user_loader
@@ -74,30 +78,33 @@ def login():
 @login_bp.route('/authorize_user', methods=['POST'])
 def verify_user():
 #     """login flow"""
-    
+    user = scunigan
+    user_password = user.password_hash
     form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
     #     platform_user = PlatformUser.object(username=username).first() 
-        if password == 'Testing' and username == 'TestUser':
-            flash('You have successfully logged in!',
+        if user.verify_password(password):
+            if  username == user.username:
+                flash('You have successfully logged in!',
                   'alert alert-success')
-            return redirect(url_for('login_bp.dashboard'))          
+                # login_user(iter(user))
+                user.is_authenticated()
+                return redirect(url_for('login_bp.dashboard'))          
     #     # platform_user = PlatformUser.query.filter_by(username=form.username.data).first() #TODO:Uncomment out lines 44 & 45 when Database is set 
     #     # if platform_user and PlatformUser.check_password(form.password.data):
         elif password != 'Testing' or username != 'TestUser':
             flash(f'The username {username} and the provided password combination is not in our system.\n Please check the credentials provided and reattempt your login.', 'alert alert-danger' )
             return redirect(url_for('login_bp.login'))
-
 @login_bp.route('/dashboard', methods=['POST', 'GET'])
+# @login_required
 def dashboard():
     return render_template('dashboard_landing.jinja',
                         #    title='<title> Safari Life Child Management System - User Homepage </title>',
                            template='base',
                            location="homepage")
 
-# w
 
 
 @app.errorhandler(CSRFError)
@@ -112,3 +119,11 @@ def page_not_found(error):
 def page_not_found(error):
     return render_template('403.html', error=403, title='Not Authoized', template='403')
 
+
+# login_manager.unauthorized_handler()
+# @login_bp.routes('/unauthorized')
+# def unauthorized():
+#     lm = LoginManager()
+#     lm.login_view = "url_for('login')"
+#     res = lm.unauthorized()
+#     return render_templete('401.html') 
