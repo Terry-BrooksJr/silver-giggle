@@ -6,16 +6,13 @@ from wtforms import StringField, SubmitField, PasswordField, BooleanField,Flags
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
-from argon2 import PasswordHasher
+import bcrypt
 from flask_login import UserMixin
 from flask_rbac import RoleMixin
-import json 
-
-from sqlalchemy import Integer
-from wtforms import StringField, SubmitField, PasswordField, BooleanField,Flags
+import json
 
 
-class PlatformUser(UserMixin):
+class PlatformUser(UserMixin,PasswordManager):
     def __init__(self, username, user_id, user_first_name, user_last_name, role, password, care_facility, date_account_created, last_date_modified, last_logged_in):
         self.username = username
         # assert isinstance(username,str)
@@ -49,18 +46,16 @@ class PlatformUser(UserMixin):
 
 
     def set_password(self, password):
-        hasher = PasswordHasher()
-        ph = hasher.hash(password)
-        self.password_hash = ph
+        salt = bcrypt.gensalt()
+        hashed_pw = bcrypt.hashpw(self.password, salt)
+        return hashed_pw
+
 
     def verify_password(self, password):
-        hasher = PasswordHasher()
-        try:
-            hasher.verify(self.password_hash, password)
-            return True
-        except Exception:
-            return False
-            
+        if bcrypt.checkpw(password): 
+            return True 
+        else:
+            raise Exception()
     def  is_active(self):
         return super().is_active
     def is_authenticated(self):

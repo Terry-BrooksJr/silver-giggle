@@ -1,0 +1,19 @@
+{
+    "css.validate": false,
+    "[css]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "css.lint.emptyRules": "error",
+    "css.lint.unknownProperties": "error",
+    "css.lint.unknownAtRules": "ignore",
+    "css.lint.vendorPrefix": "ignore",
+    "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000000000,
+    "eslint.codeAction.disableRuleComment": {
+        "location": "separateLine",
+        "enable": false
+    },
+    "stylelint.config": {
+    
+    },
+    "python.linting.enabled": false
+}

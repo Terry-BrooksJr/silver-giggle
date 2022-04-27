@@ -44,7 +44,7 @@ def init_app():
     return app
 
 
-# * Next 3 Function collectively will  confirm url after login flow is safe for redirects. Written in the app factory because these 3 functions will be used in each blue print routes 
+# * Next 3 Function collectively will  confirm url after login flow is safe for redirects. Written in the app factory because these 3 functions will be used in each blue print routes
 # * Function  1: that ensures that a redirect target will lead to the same server
 
 

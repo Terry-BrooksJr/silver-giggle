@@ -1,9 +1,9 @@
-from config import Config
-
+"""
+The LoginForm class creates a form for the user to login.
+"""
 from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms.validators import DataRequired
-from flask import current_app as app
 
 
 

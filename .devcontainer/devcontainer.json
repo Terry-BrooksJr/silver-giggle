@@ -6,10 +6,8 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspace",
-
-
 	// Set *default* container specific settings.json values on container create.
-	"settings": { 
+	"settings": {
 		"python.defaultInterpreterPath": "/usr/local/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
@@ -24,27 +22,58 @@
 		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
 		"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
 	},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",
-		"ms-python.vscode-pylance"
-		
+		"ms-python.vscode-pylance",
+		"almenon.arepl",
+		"jvandyke.vscode-circleci",
+		"streetsidesoftware.code-spell-checker",
+		"aeschli.vscode-css-formatter",
+		"ms-azuretools.vscode-docker",
+		"marquesmps.dockerfile-validator",
+		"iulian-radu-at.find-unused-exports",
+		"fabiospampinato.vscode-github-notifications-bell",
+		"lior-chamla.google-fonts",
+		"mkaufman.HTMLHint",
+		"oderwat.indent-rainbow",
+		"ypresto.vscode-intelli-refactor",
+		"VisualStudioExptTeam.vscodeintellicode",
+		"Zignd.html-css-class-completion",
+		"ZainChen.json",
+		"Meezilla.json",
+		"MariusAlchimavicius.json-to-ts",
+		"eriklynd.json-tools",
+		"DavidAnson.vscode-markdownlint",
+		"ryu1kn.partial-diff",
+		"esbenp.prettier-vscode",
+		"nils-ballmann.python-coding-tools",
+		"donjayamanne.python-environment-manager",
+		"donjayamanne.python-extension-pack",
+		"KevinRose.vsc-python-indent",
+		"mikeshaker.python-essentials",
+		"chrisvltn.vs-code-semicolon-insertion",
+		"foxundermoon.shell-format",
+		"timonwong.shellcheck",
+		"richie5um2.vscode-sort-json",
+		"ban.spellright",
+		"mtxr.sqltools",
+		"mtxr.sqltools-driver-pg",
+		"stylelint.vscode-stylelint",
+		"CelianRiboulet.webvalidator",
+		"E-Jacques.pytestersuits"
 	],
 	"forwardPorts": [
-		5432,8080
+		5432,
+		8080
 	]
-
 },
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// This can be used to network with other containers or the host.
-	// "forwardPorts": [5000, 5432],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip install --user -r requirements.txt",
-
-	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	{
-	"remoteUser": "vscode",
+// Use 'forwardPorts' to make a list of ports inside the container available locally.
+// This can be used to network with other containers or the host.
+// "forwardPorts": [5000, 5432],
+// Use 'postCreateCommand' to run commands after the container is created.
+// "postCreateCommand": "pip install --user -r requirements.txt",
+// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+{
+	"remoteUser": "vscode"
 }
