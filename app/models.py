@@ -1,15 +1,13 @@
 import datetime
-import numbers
 from typing_extensions import assert_type
-from sqlalchemy import Integer
 from wtforms import StringField, SubmitField, PasswordField, BooleanField,Flags
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
-from flask_sqlalchemy import SQLAlchemy
 import bcrypt
 from flask_login import UserMixin
 from flask_rbac import RoleMixin
 import json
+
 
 
 class PlatformUser(UserMixin):

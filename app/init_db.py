@@ -3,27 +3,25 @@
 #  from config import Config 
 from decouple import config
 from models import PlatformUser
-from app import db
-from sqlalchemy import Column, Integer, DateTime, String
+from sqlalchemy import Column, Integer, DateTime, String, SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 
 class PlatformUsers(db.Model):
     username = db.Column(db.String, unique=True)
-    user_id = db.Column(db.Integer, primary_key=True, unique=True)
+    user_id = db.Column(db.Integer, primary_key=True,
+                        unique=True, sqlite_autoincrement=True)
     user_first_name = db.Column(db.String)
     user_last_name = db.Column(db.String)
     password = db.Column(db.String)
-    care_facility = db.Column(db.String, length)
-    # assert isinstance(care_facility, str)
-    date_account_created = date_account_created
-    # assert isinstance(date_account_created, datetime)
-    last_date_modified = last_date_modified
-    # assert isinstance(last_date_modified, datetime)
-    role = role
-    # assert isinstance(role. str)
-    last_logged_in = last_logged_in
+    care_facility = db.Column(db.String)
+    date_account_created = db.Column(db.DateTime)
+    last_date_modified = db.Column(db.DateTime)
+    role = db.Column(db.String)
+    last_logged_in = db.Column(db.DateTime)
 # try:
-#     dev_postgres_db = psycopg2.connect( 
+#     dev_postgres_db = psycopg2.connect(
 #                                         host = config('AWS_db_HOST'),
 #                                         database="postgres",
 #                                         user=config('AWS_db_USER'),

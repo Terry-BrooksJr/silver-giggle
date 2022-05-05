@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_rbac import RBAC
 from config import Config
-
+from init_db import PlatformUsers
 
 
 
@@ -22,10 +22,10 @@ def init_app():
     login_manager.login_view = ''
 
     # Initialize Plugins
-    db.init_app(app)
-    # r.init_app(app)
-    login_manager.init_app(app)
-    rbac.init_app(app)
+    with app.app_context():
+        init_db()    # r.init_app(app)
+        login_manager.init_app()
+        rbac.init_app()
 
 
 

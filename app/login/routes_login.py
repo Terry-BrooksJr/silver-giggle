@@ -110,7 +110,6 @@ def dashboard():
 def handle_csrf_error(e):
     return render_template('csrf_error.html', reason=e.description, title='Security Error', template='base'), 400
 
-
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('page_not_found.jinja', error=404, title='Page Not Found', template='404')
