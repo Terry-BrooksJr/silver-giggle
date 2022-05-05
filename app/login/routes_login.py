@@ -16,9 +16,8 @@ login_bp = Blueprint(
     static_folder='static'
 )
 
-scunigan = PlatformUser("scunigan", 1, "Shenika", "Cunigan", "admin",
+shenika_cunigan = PlatformUser("shenika_cunigan", 1, "Shenika", "Cunigan", "admin",
                         "Testing", "GLEN01", now(tz='America/Chicago'), None, None)
-scunigan.password = scunigan.set_password(scunigan.password)
 
 
 @login_manager.user_loader
@@ -78,15 +77,15 @@ def login():
 @login_bp.route('/authorize_user', methods=['POST'])
 def verify_user():
 #     """login flow"""
-    user = scunigan
-    user_password = user.password_hash
+    user = shenika_cunigan
+    user_password = shenika_cunigan.password
     form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
     #     platform_user = PlatformUser.object(username=username).first() 
-        if user.verify_password(password):
-            if  username == user.username:
+        if  username == user.username:
+            if password == user_password:
                 flash('You have successfully logged in!',
                   'alert alert-success')
                 # login_user(iter(user))

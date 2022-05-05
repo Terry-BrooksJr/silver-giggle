@@ -12,7 +12,7 @@ from flask_rbac import RoleMixin
 import json
 
 
-class PlatformUser(UserMixin,PasswordManager):
+class PlatformUser(UserMixin):
     def __init__(self, username, user_id, user_first_name, user_last_name, role, password, care_facility, date_account_created, last_date_modified, last_logged_in):
         self.username = username
         # assert isinstance(username,str)
@@ -45,17 +45,16 @@ class PlatformUser(UserMixin,PasswordManager):
             raise ValueError("Invalid User ID. User ID must be all intergers not exceeding 8 characters")
 
 
-    def set_password(self, password):
-        salt = bcrypt.gensalt()
-        hashed_pw = bcrypt.hashpw(self.password, salt)
-        return hashed_pw
+    # def set_password(self, password):
+    #     salt = bcrypt.gensalt()
+    #     hashed_pw = bcrypt.hashpw(password, salt)
 
 
-    def verify_password(self, password):
-        if bcrypt.checkpw(password): 
-            return True 
-        else:
-            raise Exception()
+    # def verify_password(self, password):
+    #     if bcrypt.checkpw(password): 
+    #         return True 
+    #     else:
+    #         raise Exception()
     def  is_active(self):
         return super().is_active
     def is_authenticated(self):
@@ -75,6 +74,6 @@ class PlatformUser(UserMixin,PasswordManager):
         # return dict (self.username, self.user_id, self.user_first_name, self.user_last_name,self.password_hash, self.care_facility, self.date_account_created, self.role,self.last_date_modified, self.last_logged_in)222
 
 
-    
+
 class Role(RoleMixin):
     pass
