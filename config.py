@@ -25,7 +25,7 @@ class Config():
     FLASK_ENV = 'development'
     DEBUG = True
     TESTING = True
-    DATABASE_URI = config('AWS_db_HOST')
+    # DATABASE_URI = config('AWS_db_HOST')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     host = config('AWS_db_HOST')
     user = config('AWS_db_USER')
