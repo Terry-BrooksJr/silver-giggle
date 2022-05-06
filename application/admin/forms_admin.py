@@ -4,7 +4,7 @@ from wtforms.validators import InputRequired
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 import argon2
-from app.models import PlatformUser
+from application.models import PlatformUser
 
 
         

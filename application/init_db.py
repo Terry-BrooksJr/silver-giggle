@@ -1,13 +1,27 @@
 
 # from psycopg2 import cursor, connection
-#  from config import Config 
+from config import Config 
 from decouple import config
 from models import PlatformUser
 from sqlalchemy import Column, Integer, DateTime, String, SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
-
+from application import app 
 db = SQLAlchemy()
 
+
+def init_db():
+    db = get_db()
+    with app.open_resource('schema.sql', mode='r') as f:
+        db.cursor().executescript(f.read())
+    db.commit()
+
+
+@app.cli.command('initdb')
+def initdb_command():
+    """Initializes the database."""
+    init_db()
+    print('Initialized the database.')
+    
 class PlatformUsers(db.Model):
     username = db.Column(db.String, unique=True)
     user_id = db.Column(db.Integer, primary_key=True,

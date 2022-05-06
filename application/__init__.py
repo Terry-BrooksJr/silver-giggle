@@ -31,10 +31,10 @@ def init_app():
 
     with app.app_context():
         # Include our Routes
-        from app.login import routes_login  # pylint: disable=import-outside-toplevel
-        from app.admin import routes_admin # pylint: disable=import-outside-toplevel
-        from app.dashboard import routes_dashboard  # pylint: disable=import-outside-toplevel
-        from app.enrollment import routes_enrollment  # pylint: disable=import-outside-toplevel
+        from application.login import routes_login  # pylint: disable=import-outside-toplevel
+        from application.admin import routes_admin # pylint: disable=import-outside-toplevel
+        from application.dashboard import routes_dashboard  # pylint: disable=import-outside-toplevel
+        from application.enrollment import routes_enrollment  # pylint: disable=import-outside-toplevel
 
         # Register Blueprints
         app.register_blueprint(routes_login.login_bp)

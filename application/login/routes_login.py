@@ -1,6 +1,6 @@
-from app import get_redirect_target, is_safe_url, login_manager, redirect_back
-from app.dashboard.routes_dashboard import dashboard_bp
-from app.models import PlatformUser
+from application import get_redirect_target, is_safe_url, login_manager, redirect_back
+from application.dashboard.routes_dashboard import dashboard_bp
+from application.models import PlatformUser
 from flask import make_response, Blueprint
 from flask import current_app as app
 from flask import (flash, g, redirect, render_template, request, session,
